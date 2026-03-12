@@ -14,3 +14,37 @@ Remember, it's self-paced so feel free to take a break! ☕️
 
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
+### Sequence diagram
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant MainProgram
+    participant Operations
+    participant DataProgram
+
+    User->>MainProgram: start / choose option
+    MainProgram->>Operations: CALL with TOTAL/CREDIT/DEBIT
+    alt view balance
+        Operations->>DataProgram: CALL 'READ'
+        DataProgram-->>Operations: return balance
+        Operations-->>MainProgram: display balance
+    else credit
+        Operations-->>MainProgram: prompt for amount
+        MainProgram-->>Operations: amount entered
+        Operations->>DataProgram: CALL 'READ'
+        DataProgram-->>Operations: return balance
+        Operations->>DataProgram: CALL 'WRITE' (new balance)
+        Operations-->>MainProgram: display new balance
+    else debit
+        Operations-->>MainProgram: prompt for amount
+        MainProgram-->>Operations: amount entered
+        Operations->>DataProgram: CALL 'READ'
+        DataProgram-->>Operations: return balance
+        alt sufficient funds
+            Operations->>DataProgram: CALL 'WRITE' (new balance)
+            Operations-->>MainProgram: display new balance
+        else insufficient
+            Operations-->>MainProgram: display error
+        end
+    end

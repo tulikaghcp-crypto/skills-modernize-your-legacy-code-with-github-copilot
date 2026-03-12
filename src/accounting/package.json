@@ -1,0 +1,25 @@
+{
+  "name": "accounting-system",
+  "version": "1.0.0",
+  "description": "Student Account Management System - Node.js implementation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "accounting",
+    "student-account",
+    "modernization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^8.2.5"
+  },
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
